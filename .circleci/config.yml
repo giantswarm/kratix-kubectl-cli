@@ -1,0 +1,16 @@
+version: 2.1
+
+orbs:
+  architect: giantswarm/architect@5.3.0
+
+workflows:
+  my-workflow:
+    jobs:
+      - architect/push-to-registries:
+          registries-data: |-
+            public gsoci.azurecr.io ACR_GSOCI_USERNAME ACR_GSOCI_PASSWORD true
+          context: architect
+          name: push-to-registries
+          filters:
+            tags:
+              only: /^v.*/
